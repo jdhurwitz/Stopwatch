@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/Users/Terminator/Documents/CS152A/stopwatch/tb_isim_beh.exe" -prj "C:/Users/Terminator/Documents/CS152A/stopwatch/tb_beh.prj" "work.tb" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/Users/Synchronous/Documents/GitHub/Stopwatch/tb_isim_beh.exe" -prj "C:/Users/Synchronous/Documents/GitHub/Stopwatch/tb_beh.prj" "work.tb" "work.glbl" 

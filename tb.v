@@ -10,11 +10,12 @@ module tb;
 	wire CLK_1HZ;
 	wire CLK_BLINK;
 
-	reg clk;
+	reg clk, reset;
 
 initial clk = 0;
 	clock uut (
 		.CLK_REF(clk), 
+		.CLK_RES(reset),
 		.CLK_FAST(CLK_FAST), 
 		.CLK_2HZ(CLK_2HZ), 
 		.CLK_1HZ(CLK_1HZ), 
@@ -26,6 +27,7 @@ initial clk = 0;
 	initial begin
 		// Initialize Inputs
 		clk = 0;
+		reset = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;

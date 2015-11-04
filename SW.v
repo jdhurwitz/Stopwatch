@@ -15,6 +15,7 @@ wire CLKB;
 
 	clock clk_new(
 	.CLK_REF  (clk),
+	.CLK_RES	 (RESET),
 	.CLK_FAST (CLKF),
 	.CLK_1HZ	 (CLK1),
 	.CLK_2HZ  (CLK2),
