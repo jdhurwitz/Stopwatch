@@ -22,15 +22,21 @@ initial clk = 0;
 		.CLK_BLINK(CLK_BLINK)
 	);	
 	
-	
-	   always #5 clk = ~clk;
+	initial begin
+		clk = 0;
+
+	   forever
+			begin
+				#5 clk = ~clk;
+			end
+   end
 	initial begin
 		// Initialize Inputs
-		clk = 0;
-		reset = 0;
+		reset = 1;
 
 		// Wait 100 ns for global reset to finish
 		#100;
+		reset = 0;
         
 		// Add stimulus here
 		
