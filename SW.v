@@ -5,7 +5,10 @@ module SW(
     input RESET,
     input PAUSE,
     input ADJ,
-    input SEL
+    input SEL,
+	 
+	 output[6:0] dispDigit,
+	 output[3:0] selector
     );
 	 /*
 	 SEL = 0  --> minutes
@@ -23,11 +26,14 @@ wire CLK2;
 wire CLKF;
 wire CLKB;
 
-reg c_out6, c_out10;
 reg[3:0] zero = 0;
 reg[3:0] one = 0;
 reg[3:0] two = 0;
 reg[3:0] three = 0;
+
+wire[3:0] d0, d1, d2, d3;
+//reg[6:0] dispDigit; //7-seg 
+//reg[3:0] selector;  //which segment to display
 
 	clock clk_new(
 	.CLK_REF  (clk),
@@ -38,15 +44,18 @@ reg[3:0] three = 0;
 	.CLK_BLINK (CLKB)
 
 	);
-/*
-	counter count(
-    .RESET (RESET),
-    .CLK (clk),
-    .PAUSE (PAUSE),
-    .CARRY6 (c_out6),
-	.CARRY10 (c_out10)
-    );
-	*/
+
+	disp sevenSeg(
+	.CLK	(clk),
+	.RESET (RESET),
+	.d0	 (d0),
+	.d1	 (d1),
+	.d2	 (d2),
+	.d3	 (d3),
+	
+	.dispDigit (dispDigit),
+	.selector  (selector)
+	);
 	/*Disgusting implementation of a minte and second counter.*/
 	
 	always@(posedge CLKF)
@@ -86,6 +95,11 @@ reg[3:0] three = 0;
 			begin
 				zero <= zero+1;
 			end
-	end 
+			
 
+	end 
+	  assign d0[3:0] = zero[3:0];
+	  assign d1[3:0] = one[3:0];
+	  assign d2[3:0] = two[3:0];
+	  assign d3[3:0] = three[3:0];
 endmodule

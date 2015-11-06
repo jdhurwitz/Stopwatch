@@ -15,7 +15,7 @@ module clock(
 
 
 reg [26:0]count1 = 0;
-reg [26:0]countf = 0;
+
 /*
 always@(posedge CLK_RES)
 begin
@@ -25,27 +25,6 @@ begin
 	CLK_BLINK <= 1'b0;
 end
 */
-/*500Hz Clock*/
-always@(posedge CLK_REF)
-begin
-	if(CLK_RES)
-		begin
-			countf <= 0;
-			CLK_FAST <= 1'b0;
-		end
-	else 
-		begin
-			if(countf[26:0] == 100000)
-				begin
-					CLK_FAST <= ~CLK_FAST;
-					countf <= 0;
-				end
-			else
-				begin
-					countf <= countf + 1;
-				end
-		end
-end
 
 /* 1Hz and 2Hz outputs*/
 always@(posedge CLK_REF)

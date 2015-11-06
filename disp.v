@@ -14,21 +14,87 @@ module disp(
 	 input [3:0] d2,
 	 input [3:0] d3,
 	 
-	 output reg[6:0] dispDigit
+	 output reg[6:0] dispDigit,
+	 output reg[3:0] selector
     );
-
-reg [3:0] mDigit; //multiplexed digit
+/*
+Selector reg determines which of the digits will be selected.
+dispDigit holds information regarding which segments of the 7 to illuminate.
+*/
+reg [3:0] mDigit; //the digit we are currently using
+localparam SIZE = 17;
+reg [SIZE-1:0]count;
 /*
 Need to multiplex across all four displays
 */
 
+/*1kHz Clock*/
+always@(posedge CLK)
+begin
+	if(RESET)
+		begin
+			count <= 0;
+		end
+	else 
+		begin
+			count <= count + 1;
+		end
+end
+
+always@(count)
+begin
+	if(RESET)
+		begin
+			//non displayable value
+			selector = 4'b1111;
+			mDigit = 0;
+		end
+	else
+		begin
+			case(count[SIZE-1:SIZE-2])
+				0: //EN digit 0
+					begin
+						selector = 4'b1110;
+						mDigit = d0;
+					end
+				1: //EN digit 1
+					begin
+						selector = 4'b1101;
+						mDigit = d1;
+					end
+				2: //EN digit 2
+					begin
+						selector = 4'b1011;
+						mDigit = d2;
+					end	
+				3: //EN digit 3
+					begin
+						selector = 4'b0111;
+						mDigit = d3;
+					end
+				default:
+					begin
+						mDigit = 0;
+					end
+			endcase
+		end
+end
 
 /*
 Case covering possible values of a 4-bit reg.
+7'bgfedcba
+
+We want to change the display digit every time
+the mDigit (multiplexed digit) changes.
 */
 always@(mDigit)
-begin
-		case (mDigit)
+	if(RESET)
+		begin
+			dispDigit = 7'b1111111; //blank digit
+		end
+	else
+		begin
+				case (mDigit)
 					 4'b0000	: dispDigit = 7'b1000000;   // 0
 					 4'b0001 : dispDigit = 7'b1111001;   // 1
 					 4'b0010 : dispDigit = 7'b0100100;   // 2
@@ -40,6 +106,6 @@ begin
 					 4'b1000 : dispDigit = 7'b0000000;   // 8
 					 4'b1001 : dispDigit = 7'b0010000;   // 9			 
 					 default : dispDigit = 7'b0111111;   // dash
-		endcase
-end
+				endcase
+		end
 endmodule
