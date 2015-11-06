@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/swtb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="swtb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/swtb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/RESET" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">RESET</obj_property>
+      <obj_property name="ObjectShortName">RESET</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/PAUSE" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">PAUSE</obj_property>
+      <obj_property name="ObjectShortName">PAUSE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/ADJ" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">ADJ</obj_property>
+      <obj_property name="ObjectShortName">ADJ</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/SEL" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">SEL</obj_property>
+      <obj_property name="ObjectShortName">SEL</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/uut/three" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">three[3:0]</obj_property>
+      <obj_property name="ObjectShortName">three[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/uut/two" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">two[3:0]</obj_property>
+      <obj_property name="ObjectShortName">two[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/uut/zero" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">zero[3:0]</obj_property>
+      <obj_property name="ObjectShortName">zero[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/uut/one" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">one[3:0]</obj_property>
+      <obj_property name="ObjectShortName">one[3:0]</obj_property>
+   </wvobject>
+</wave_config>

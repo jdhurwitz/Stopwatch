@@ -11,10 +11,12 @@ module counter(
     input RESET,
     input CLK,
     input PAUSE,
-    output CARRY
+    output reg CARRY6,
+	output reg CARRY10
     );
 
-integer count = 0;
+integer count6 = 0;
+integer count10 = 0;
 always@ (posedge CLK)
 	begin 
 		if(PAUSE)
@@ -22,22 +24,45 @@ always@ (posedge CLK)
 			end
 		if(RESET)
 			begin
-				count <= 4'b0000;
-				CARRY = 0;
+				count10 <= 4'b0000;
+				CARRY10 = 0;
 			end
-		else if(count == 4'b1001)
+		else if(count10 == 4'b1001)
 			begin
-				count <= 4'b0000;
-				CARRY = 1;
+				count10 <= 4'b0000;
+				CARRY10 = 1;
 			end
 		else
 			begin
-				count <= count + 1;
-				CARRY = 0;
+				count10 <= count10 + 1;
+				CARRY10 <= 0;
+			end
+	end
+	
+
+always@ (posedge CLK)
+	begin 
+		if(PAUSE)
+			begin
+			end
+		if(RESET)
+			begin
+				count6 <= 4'b0000;
+				CARRY6 = 0;
+			end
+		else if(count6 == 4'b0101)
+			begin
+				count6 <= 4'b0000;
+				CARRY6 = 1;
+			end
+
+		else
+			begin
+				count6 <= count6 + 1;
+				CARRY6 <= 0;
 			end
 	end
 	
 endmodule
-
 
 
