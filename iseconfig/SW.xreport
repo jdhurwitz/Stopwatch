@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2015-11-05T20:01:45</DateModified>
+  <DateModified>2015-11-05T20:37:47</DateModified>
   <ModuleName>SW</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>C:/Users/Synchronous/Downloads/Stopwatch-master (2)/Stopwatch-master/iseconfig/SW.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/Synchronous/Downloads/Stopwatch-master (2)/Stopwatch-master\</ImplementationReportsDirectory>
+  <SavedFilePath>C:/Users/Synchronous/Documents/GitHub/Stopwatch/iseconfig/SW.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/Synchronous/Documents/GitHub/Stopwatch\</ImplementationReportsDirectory>
   <DateInitialized>2015-10-28T13:04:50</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

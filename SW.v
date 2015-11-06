@@ -37,12 +37,9 @@ reg[3:0] three = 0;
 	.CARRY10 (c_out10)
     );
 	*/
-	/*Increment last digit from 0-9, then carry to next digit.
-	Digit 2: counts from 0-6
-	Digit 3: counts from 0-9
-	Digit 4: counts from 0-6*/
+	/*Disgusting implementation of a hour and minute counter.*/
 	
-	always@(posedge clk)
+	always@(posedge CLK1)
 	begin
 		$display("%d"+"%d"+"%d"+"%d", three, two, one, zero);
 		if(zero == 9)
@@ -51,28 +48,29 @@ reg[3:0] three = 0;
 					begin
 						one <= 0;
 						zero <= 0;
-						two <= two+1;
+						if(two == 9)
+							begin
+								if(three == 5)
+									begin
+										three <= 0;
+									
+									end
+								else
+									begin
+										three <= three+1;
+									end
+									two <= 0;
+							end
+						else
+							begin
+								two <= two+1;
+							end
 					end
 				else
 					begin
 						zero <= 0;
 						one <= one+1;
 					end
-			end
-
-		else if(two == 9)
-			begin
-				if(three == 5)
-					begin
-						three <= 0;
-						two <= 0;
-						one <= 0;
-					end
-				else
-					begin
-						zero <= zero+1;
-					end
-				
 			end
 		else
 			begin

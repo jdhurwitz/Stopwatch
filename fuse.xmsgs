@@ -5,16 +5,16 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/SW.v" Line 25: Target &lt;<arg fmt="%s" index="1">CLKF</arg>&gt; of concurrent assignment or output port connection should be a net type.
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/Synchronous/Documents/GitHub/Stopwatch/SW.v" Line 25: Target &lt;<arg fmt="%s" index="1">CLKF</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/SW.v" Line 26: Target &lt;<arg fmt="%s" index="1">CLK1</arg>&gt; of concurrent assignment or output port connection should be a net type.
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/Synchronous/Documents/GitHub/Stopwatch/SW.v" Line 26: Target &lt;<arg fmt="%s" index="1">CLK1</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/SW.v" Line 27: Target &lt;<arg fmt="%s" index="1">CLK2</arg>&gt; of concurrent assignment or output port connection should be a net type.
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/Synchronous/Documents/GitHub/Stopwatch/SW.v" Line 27: Target &lt;<arg fmt="%s" index="1">CLK2</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/SW.v" Line 28: Target &lt;<arg fmt="%s" index="1">CLKB</arg>&gt; of concurrent assignment or output port connection should be a net type.
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/Synchronous/Documents/GitHub/Stopwatch/SW.v" Line 28: Target &lt;<arg fmt="%s" index="1">CLKB</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
 </messages>
