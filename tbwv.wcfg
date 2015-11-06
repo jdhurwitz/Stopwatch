@@ -3,14 +3,14 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/swtb_isim_beh.wdb" id="1" type="auto">
+      <db_ref path="C:/Users/Synchronous/Documents/GitHub/Stopwatch/swtb_isim_beh.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="glbl" />
             <top_module name="swtb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="11" />
    <wvobject fp_name="/swtb/clk" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -46,5 +46,13 @@
    <wvobject fp_name="/swtb/uut/one" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">one[3:0]</obj_property>
       <obj_property name="ObjectShortName">one[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/uut/CLK1" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">CLK1</obj_property>
+      <obj_property name="ObjectShortName">CLK1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/swtb/uut/CLKF" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">CLKF</obj_property>
+      <obj_property name="ObjectShortName">CLKF</obj_property>
    </wvobject>
 </wave_config>

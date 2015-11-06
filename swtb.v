@@ -41,23 +41,28 @@ module swtb;
 	);
 
 	initial begin
-	clk = 0;
-		forever
-		begin
-			#100 clk = ~clk;
-		end
-	end
-	initial begin
-		// Initialize Inputs
 		RESET = 1;
 		PAUSE = 0;
 		ADJ = 0;
 		SEL = 0;
-
-		// Wait 100 ns for global reset to finish
+		
 		#100;
 		RESET = 0;
-        
+
+		
+	end
+	initial begin
+		// Initialize Inputs
+		clk = 0;
+
+		// Wait 100 ns for global reset to finish
+	//#100;
+		//RESET = 0;
+			
+      forever
+		begin
+			#5 clk = ~clk;
+		end
 		// Add stimulus here
 
 	end

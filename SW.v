@@ -1,17 +1,27 @@
 `timescale 1ns / 1ps
 
 module SW(
-	input clk,
+	 input clk,
     input RESET,
     input PAUSE,
     input ADJ,
     input SEL
     );
+	 /*
+	 SEL = 0  --> minutes
+	 SEL = 1	 --> seconds
+	 Selected portion of clock is incremented at 2Hz.
+	 Unselected portion is paused.
+	 
+	 PAUSE = 0 (not pressed) --> resume 
+	 PAUSE = 1 (pressed) 	 --> pause counter
+	 
+	 */
 
-reg CLK1;
-reg CLK2;
-reg CLKF;
-reg CLKB;
+wire CLK1;
+wire CLK2;
+wire CLKF;
+wire CLKB;
 
 reg c_out6, c_out10;
 reg[3:0] zero = 0;
@@ -23,8 +33,8 @@ reg[3:0] three = 0;
 	.CLK_REF  (clk),
 	.CLK_RES	 (RESET),
 	.CLK_FAST (CLKF),
-	.CLK_1HZ	 (CLK1),
-	.CLK_2HZ  (CLK2),
+	.CLK_2HZ	 (CLK2),
+	.CLK_1HZ  (CLK1),
 	.CLK_BLINK (CLKB)
 
 	);
@@ -37,9 +47,9 @@ reg[3:0] three = 0;
 	.CARRY10 (c_out10)
     );
 	*/
-	/*Disgusting implementation of a hour and minute counter.*/
+	/*Disgusting implementation of a minte and second counter.*/
 	
-	always@(posedge CLK1)
+	always@(posedge CLKF)
 	begin
 		$display("%d"+"%d"+"%d"+"%d", three, two, one, zero);
 		if(zero == 9)

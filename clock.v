@@ -14,10 +14,17 @@ module clock(
     );
 
 
-integer RESET = 0;
-reg [26:0]count1;
-reg [26:0]countf;
-
+reg [26:0]count1 = 0;
+reg [26:0]countf = 0;
+/*
+always@(posedge CLK_RES)
+begin
+	CLK_FAST  <= 1'b0;
+	CLK_2HZ   <= 1'b0;
+	CLK_1HZ   <= 1'b0;
+	CLK_BLINK <= 1'b0;
+end
+*/
 /*500Hz Clock*/
 always@(posedge CLK_REF)
 begin
