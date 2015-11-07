@@ -64,10 +64,10 @@ reg int_clk = 0;
 	/*Disgusting implementation of a minte and second counter.*/
 
 
-	always@(posedge CLK2)
+	always@(posedge clk)
 	begin
         
-        if(PAUSE) //pause
+        if(PAUSE) //reset
           begin
           
                 zero <= 0;

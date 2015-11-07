@@ -1,0 +1,10 @@
+Command line:
+   swtb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  56180
+
+Fri Nov 06 17:21:36 2015
+
+
+ Elaboration Time: 0.140401 sec
