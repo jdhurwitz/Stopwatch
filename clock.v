@@ -37,19 +37,21 @@ begin
 		end
 	else
 		begin
-			 if(count1[26:0] == 25000000) //2Hz
+			 if(count1[26:0] == 50000000) //2Hz
 				begin
-					CLK_2HZ <= ~CLK_2HZ;
+					CLK_2HZ <= 1;
 					count1 <= count1 +1;
 				end
-			else if(count1[26:0] == 50000000) //1Hz
+			else if(count1[26:0] == 100000000) //1Hz
 				begin
-					CLK_1HZ <= ~CLK_1HZ;
-					CLK_2HZ <= ~CLK_2HZ;
+					CLK_1HZ <= 1;
+					CLK_2HZ <= 1;
 					count1 <= 20'h00000;
 				end
 			else
 				begin
+					CLK_2HZ <= 0;
+					CLK_1HZ <= 0;
 					count1 <= count1 + 1;
 				end
 		end

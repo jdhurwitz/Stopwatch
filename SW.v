@@ -67,13 +67,8 @@ reg int_clk = 0;
 	always@(posedge clk)
 	begin
         
-        if(PAUSE) //reset
+        if(PAUSE) //pause
           begin
-          
-                zero <= 0;
-                one  <= 0;
-                two  <= 0;
-                three <= 0;
           end
         else if(RESET) //reset
             begin

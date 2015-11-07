@@ -53,7 +53,7 @@ module swtb;
 		
 		#100;
 		RESET = 0;
-        ADJ = 1;
+        ADJ = 0;
         SEL = 0;
   
 		

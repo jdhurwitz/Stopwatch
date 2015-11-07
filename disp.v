@@ -22,7 +22,7 @@ Selector reg determines which of the digits will be selected.
 dispDigit holds information regarding which segments of the 7 to illuminate.
 */
 reg [3:0] mDigit; //the digit we are currently using
-localparam SIZE = 12;
+localparam SIZE = 14;
 reg [SIZE-1:0]count;
 /*
 Need to multiplex across all four displays

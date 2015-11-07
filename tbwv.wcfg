@@ -51,8 +51,8 @@
       <obj_property name="ElementShortName">CLK1</obj_property>
       <obj_property name="ObjectShortName">CLK1</obj_property>
    </wvobject>
-   <wvobject fp_name="/swtb/uut/CLKF" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">CLKF</obj_property>
-      <obj_property name="ObjectShortName">CLKF</obj_property>
+   <wvobject fp_name="/swtb/uut/CLK2" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">CLK2</obj_property>
+      <obj_property name="ObjectShortName">CLK2</obj_property>
    </wvobject>
 </wave_config>
