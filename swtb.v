@@ -30,6 +30,9 @@ module swtb;
 	reg PAUSE;
 	reg ADJ;
 	reg SEL;
+    
+    reg[6:0] dispDigit;
+    reg[3:0] selector;
 
 	// Instantiate the Unit Under Test (UUT)
 	SW uut (
@@ -37,7 +40,9 @@ module swtb;
 		.RESET(RESET), 
 		.PAUSE(PAUSE), 
 		.ADJ(ADJ), 
-		.SEL(SEL)
+		.SEL(SEL),
+        .dispDigit(dispDigit),
+        .selector(selector)
 	);
 
 	initial begin
@@ -48,7 +53,9 @@ module swtb;
 		
 		#100;
 		RESET = 0;
-
+        ADJ = 1;
+        SEL = 0;
+  
 		
 	end
 	initial begin

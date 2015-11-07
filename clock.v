@@ -5,7 +5,7 @@
 */
 //////////////////////////////////////////////////////////////////////////////////
 module clock(
-    input CLK_REF,
+     input CLK_REF,
 	 input CLK_RES,
     output reg CLK_FAST,
     output reg CLK_2HZ,

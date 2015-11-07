@@ -1,12 +1,14 @@
 `timescale 1ns / 1ps
 
 module SW(
-	 input clk,
+	  input clk,
     input RESET,
     input PAUSE,
     input ADJ,
     input SEL,
 	 
+  // output Led0,
+   //output Led1,
 	 output[6:0] dispDigit,
 	 output[3:0] selector
     );
@@ -26,12 +28,15 @@ wire CLK2;
 wire CLKF;
 wire CLKB;
 
+wire digReset;
+
 reg[3:0] zero = 0;
 reg[3:0] one = 0;
 reg[3:0] two = 0;
 reg[3:0] three = 0;
 
-wire[3:0] d0, d1, d2, d3;
+reg int_clk = 0;
+
 //reg[6:0] dispDigit; //7-seg 
 //reg[3:0] selector;  //which segment to display
 
@@ -48,58 +53,125 @@ wire[3:0] d0, d1, d2, d3;
 	disp sevenSeg(
 	.CLK	(clk),
 	.RESET (RESET),
-	.d0	 (d0),
-	.d1	 (d1),
-	.d2	 (d2),
-	.d3	 (d3),
+	.d0	 (zero),
+	.d1	 (one),
+	.d2	 (two),
+	.d3	 (three),
 	
 	.dispDigit (dispDigit),
 	.selector  (selector)
 	);
 	/*Disgusting implementation of a minte and second counter.*/
-	
-	always@(posedge CLKF)
-	begin
-		$display("%d"+"%d"+"%d"+"%d", three, two, one, zero);
-		if(zero == 9)
-			begin
-				if(one == 5)
-					begin
-						one <= 0;
-						zero <= 0;
-						if(two == 9)
-							begin
-								if(three == 5)
-									begin
-										three <= 0;
-									
-									end
-								else
-									begin
-										three <= three+1;
-									end
-									two <= 0;
-							end
-						else
-							begin
-								two <= two+1;
-							end
-					end
-				else
-					begin
-						zero <= 0;
-						one <= one+1;
-					end
-			end
-		else
-			begin
-				zero <= zero+1;
-			end
-			
 
-	end 
-	  assign d0[3:0] = zero[3:0];
-	  assign d1[3:0] = one[3:0];
-	  assign d2[3:0] = two[3:0];
-	  assign d3[3:0] = three[3:0];
+
+	always@(posedge CLK2)
+	begin
+        
+        if(PAUSE) //pause
+          begin
+          
+                zero <= 0;
+                one  <= 0;
+                two  <= 0;
+                three <= 0;
+          end
+        else if(RESET) //reset
+            begin
+                zero <= 0;
+                one  <= 0;
+                two  <= 0;
+                three <= 0;
+            end
+        else if(!ADJ && CLK1)
+          begin
+            //Led0 <= 0;
+              $display("%d"+"%d"+"%d"+"%d", three, two, one, zero);
+              if(zero == 9)
+                  begin
+                      if(one == 5)
+                          begin
+                              one <= 0;
+                              zero <= 0;
+                              if(two == 9)
+                                  begin
+                                      if(three == 5)
+                                          begin
+                                              three <= 0;
+                                          
+                                          end
+                                      else
+                                          begin
+                                              three <= three+1;
+                                          end
+                                          two <= 0;
+                                  end
+                              else
+                                  begin
+                                      two <= two+1;
+                                  end
+                          end
+                      else
+                          begin
+                              zero <= 0;
+                              one <= one+1;
+                          end
+                  end
+              else
+                  begin
+                      zero <= zero+1;
+                  end
+              end 
+        if(ADJ && CLK2)            
+          begin
+          $display("%d"+"%d"+"%d"+"%d", three, two, one, zero);
+            //Led0 <= 1;
+            if(SEL == 1) //seconds
+                begin
+                 // Led1 <= 1;
+
+                    if(zero == 9)
+                        begin
+                            if(one == 5 )
+                                begin
+                                    zero <= 0;
+                                    one <= 0;
+                                end
+                            else
+                                begin
+                                    one <= one + 1;
+                                    zero <= 0;
+                                end
+                        end
+                     else
+                        begin
+                            zero <= zero + 1;
+                        end
+                end
+            else if(SEL == 0) //minutes
+                begin
+                       // Led1 <= 0;
+
+                    if(two == 9)
+                        begin
+                            if(three == 5)
+                                begin
+                                    two <= 0;
+                                    three <= 0;
+                                end
+                            else
+                                begin
+                                    three <= three + 1;
+                                    two <= 0;
+                                end
+                        end
+                     else
+                        begin
+                            two <= two + 1;
+                        end
+                end
+          end
+
+ end
+    
+
 endmodule

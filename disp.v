@@ -7,7 +7,7 @@ Outouts: Outputs are 7 bit regs, one for each of the digits on the display.
 */
 //////////////////////////////////////////////////////////////////////////////////
 module disp(
-    input CLK,
+   input CLK,
 	 input RESET,
 	 input [3:0] d0,
 	 input [3:0] d1,
@@ -22,26 +22,36 @@ Selector reg determines which of the digits will be selected.
 dispDigit holds information regarding which segments of the 7 to illuminate.
 */
 reg [3:0] mDigit; //the digit we are currently using
-localparam SIZE = 17;
+localparam SIZE = 12;
 reg [SIZE-1:0]count;
 /*
 Need to multiplex across all four displays
 */
 
-/*1kHz Clock*/
-always@(posedge CLK)
-begin
-	if(RESET)
-		begin
-			count <= 0;
-		end
-	else 
-		begin
-			count <= count + 1;
-		end
-end
+ /*500Hz Clock*/
+ always@(posedge CLK)
+ begin
+ 	if(RESET)
+ 		begin
+ 			count <= 0;
 
-always@(count)
+ 			//CLK_FAST <= 1'b0;
+ 		end
+ 	else 
+ 		begin
+ 			if(count[SIZE-1:SIZE-3] == 7)
+ 				begin
+ 					//CLK_FAST <= ~CLK_FAST;
+ 					count <= 0;
+ 				end
+ 			else
+ 				begin
+ 					count <= count + 1;
+ 				end
+ 		end
+ end
+
+always@(posedge CLK)
 begin
 	if(RESET)
 		begin
@@ -90,12 +100,12 @@ the mDigit (multiplexed digit) changes.
 always@(mDigit)
 	if(RESET)
 		begin
-			dispDigit = 7'b1111111; //blank digit
+      dispDigit = 7'b1000000;
 		end
 	else
-		begin
+		begin 
 				case (mDigit)
-					 4'b0000	: dispDigit = 7'b1000000;   // 0
+					 4'b0000 : dispDigit = 7'b1000000;   // 0
 					 4'b0001 : dispDigit = 7'b1111001;   // 1
 					 4'b0010 : dispDigit = 7'b0100100;   // 2
 					 4'b0011 : dispDigit = 7'b0110000;   // 3
