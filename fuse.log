@@ -1,0 +1,25 @@
+Running: C:\Xilinx\14.6\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/swtb_isim_beh.exe -prj C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/swtb_beh.prj work.swtb work.glbl 
+ISim P.68d (signature 0x7708f090)
+Number of CPUs detected in this system: 2
+Turning on mult-threading, number of parallel sub-compilation jobs: 4 
+Determining compilation order of HDL files
+Analyzing Verilog file "C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/clock.v" into library work
+Analyzing Verilog file "C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/SW.v" into library work
+Analyzing Verilog file "C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/swtb.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.6/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:329 - "C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/SW.v" Line 25: Target <CLKF> of concurrent assignment or output port connection should be a net type.
+WARNING:HDLCompiler:329 - "C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/SW.v" Line 26: Target <CLK1> of concurrent assignment or output port connection should be a net type.
+WARNING:HDLCompiler:329 - "C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/SW.v" Line 27: Target <CLK2> of concurrent assignment or output port connection should be a net type.
+WARNING:HDLCompiler:329 - "C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/SW.v" Line 28: Target <CLKB> of concurrent assignment or output port connection should be a net type.
+Completed static elaboration
+Compiling module clock
+Compiling module SW
+Compiling module swtb
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 4 Verilog Units
+Built simulation executable C:/Users/152/Documents/Ram and Jonny/Stopwatch-master/swtb_isim_beh.exe
+Fuse Memory Usage: 26908 KB
+Fuse CPU Usage: 514 ms

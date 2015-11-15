@@ -7,8 +7,12 @@ Outouts: Outputs are 7 bit regs, one for each of the digits on the display.
 */
 //////////////////////////////////////////////////////////////////////////////////
 module disp(
-   input CLK,
+	 input CLK,
+    input CLK1,
+    input CLK2,
 	 input RESET,
+	 input ADJ,
+	 input SEL,
 	 input [3:0] d0,
 	 input [3:0] d1,
 	 input [3:0] d2,
@@ -23,7 +27,11 @@ dispDigit holds information regarding which segments of the 7 to illuminate.
 */
 reg [3:0] mDigit; //the digit we are currently using
 localparam SIZE = 14;
+localparam B_SIZE = 24;
 reg [SIZE-1:0]count;
+reg [B_SIZE-1:0] bcount;
+
+
 /*
 Need to multiplex across all four displays
 */
@@ -50,6 +58,25 @@ Need to multiplex across all four displays
  				end
  		end
  end
+ 
+ always@(posedge CLK)
+ begin
+ 	if(RESET)
+ 		begin
+ 			bcount <= 0;
+ 		end
+ 	else 
+ 		begin
+ 			if(bcount[B_SIZE-1:B_SIZE-3] == 7)
+ 				begin
+ 					bcount <= 0;
+ 				end
+ 			else
+ 				begin
+ 					bcount <= bcount + 1;
+ 				end
+ 		end
+ end
 
 always@(posedge CLK)
 begin
@@ -59,7 +86,129 @@ begin
 			selector = 4'b1111;
 			mDigit = 0;
 		end
-	else
+	else if(ADJ == 1)
+		begin
+			/*If set to minutes, we want to blink minutes (two and three).
+			  Set to seconds means we want to blink (zero and one).*/
+			if(SEL == 1)
+				begin
+					case(count[SIZE-1:SIZE-2])
+						2:
+							begin
+								selector = 4'b1011;
+								mDigit = d2;
+							end
+						3:
+							begin
+								selector = 4'b0111;
+								mDigit = d3;
+							end
+						default:
+							begin
+								//mDigit = 0;
+							end
+					endcase
+				
+				if(bcount[B_SIZE-1])
+					begin
+						case(count[SIZE-1:SIZE-2])
+							0: //EN digit 0
+								begin
+									selector = 4'b1110;
+									mDigit = d0;
+								end
+							1: //EN digit 1
+								begin
+									selector = 4'b1101;
+									mDigit = d1;
+								end
+							default:
+								begin
+									//mDigit = 0;
+								end
+						endcase
+					end
+				else if(!bcount[B_SIZE-1])
+					begin
+						case(count[SIZE-1:SIZE-2])
+							0: //EN digit 0
+								begin
+									selector = 4'b1111;
+									mDigit = d0;
+								end
+							1: //EN digit 1
+								begin
+									selector = 4'b1111;
+									mDigit = d1;
+								end
+							default:
+								begin
+									//mDigit = 0;
+								end
+						endcase
+					end
+				end
+			else if(SEL == 0)		//mins
+				begin
+					case(count[SIZE-1:SIZE-2])
+						0:
+							begin
+								selector = 4'b1110;
+								mDigit = d0;
+							end
+						1:
+							begin
+								selector = 4'b1101;
+								mDigit = d1;
+							end
+						default:
+							begin
+								//mDigit = 0;
+							end
+					endcase
+				
+				if(bcount[B_SIZE-1])
+					begin
+						case(count[SIZE-1:SIZE-2])
+							2: //EN digit 0
+								begin
+									selector = 4'b1011;
+									mDigit = d2;
+								end
+							3: //EN digit 1
+								begin
+									selector = 4'b0111;
+									mDigit = d3;
+								end
+							default:
+								begin
+									//mDigit = 0;
+								end
+						endcase
+					end
+				else if(!bcount[B_SIZE-1])
+					begin
+						case(count[SIZE-1:SIZE-2])
+							2: //EN digit 0
+								begin
+									selector = 4'b1111;
+									mDigit = d2;
+								end
+							3: //EN digit 1
+								begin
+									selector = 4'b1111;
+									mDigit = d3;
+								end
+							default:
+								begin
+									//mDigit = 0;
+								end
+						endcase
+					end
+				end
+			
+	end
+	else if(ADJ == 0)
 		begin
 			case(count[SIZE-1:SIZE-2])
 				0: //EN digit 0
@@ -100,7 +249,7 @@ the mDigit (multiplexed digit) changes.
 always@(mDigit)
 	if(RESET)
 		begin
-      dispDigit = 7'b1000000;
+			dispDigit = 7'b1000000;
 		end
 	else
 		begin 

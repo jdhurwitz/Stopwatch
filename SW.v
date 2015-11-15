@@ -52,7 +52,11 @@ reg int_clk = 0;
 
 	disp sevenSeg(
 	.CLK	(clk),
+	.CLK1 	(CLK1),
+	.CLK2	(CLK2),
 	.RESET (RESET),
+	.ADJ (ADJ),
+	.SEL (SEL),
 	.d0	 (zero),
 	.d1	 (one),
 	.d2	 (two),
